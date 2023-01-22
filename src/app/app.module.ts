@@ -3,14 +3,20 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { NavBarComponent } from './shared/nav-bar/nav-bar.component';
+import { AppRoutingModule } from './app-routing.module';
+import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavBarComponent,
+    ErrorPageComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule, 
+    AppRoutingModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]

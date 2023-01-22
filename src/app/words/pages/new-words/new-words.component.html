@@ -1,0 +1,85 @@
+<div class="container mt-5">
+
+  <h3>Añadir nueva palabra</h3>
+  <form class="row g-3">
+    <div class="col-md-4 col-lg-6">
+      <label for="word" class="form-label">Palabra</label>
+      <input type="text" class="form-control " [ngClass]="{'is-invalid': !isValidInput.word.isValid, 'is-valid': addWords.word }"
+       id="word" [(ngModel)]="addWords.word" name="word">
+
+      
+      <div class="invalid-feedback" *ngIf="!isValidInput.word.isValid">
+
+        <ul>
+          <li  *ngFor="let messageError of isValidInput.word.messagesError">
+            {{messageError}}
+          </li>
+        </ul>
+
+      </div>
+    </div>
+    <div class="col-md-4 col-lg-6">
+      <label for="wordSpanish" class="form-label">Traducción</label>
+      <input type="text" class="form-control " 
+      [ngClass]="{'is-invalid': !isValidInput.wordSpanish.isValid, 'is-valid': addWords.wordSpanish }"
+      id="wordSpanish" [(ngModel)]="addWords.wordSpanish"
+        name="wordSpanish">
+        <!-- <div class="invalid-feedback" *ngIf="!isValidInput.wordSpanish.isValid">
+          <ul>
+            <li  *ngFor="let messageError of isValidInput.wordSpanish.messagesError">
+              {{messageError}}
+            </li>
+          </ul>
+  
+        </div> -->
+    </div>
+
+    <div class="col-md-4 col-lg-6">
+      <label for="lenguajes" class="form-label">Lenguaje</label>
+      <select class="form-select is-invalid" id="validationServer04" id="lenguajes" name="lenguajes"
+        aria-describedby="validationServer04Feedback" [(ngModel)]="addWords.lenguajes" required>
+        <option selected disabled value="">--Seleccione una categoría--</option>
+        <option value="ingles">Ingles</option>
+        <option value="portugues">Portugues</option>
+      </select>
+      <div id="validationServer04Feedback" class="invalid-feedback">
+        Please select a valid state.
+      </div>
+    </div>
+
+    <div class="col-md-4 col-lg-6">
+      <label for="category" class="form-label">Categoría</label>
+      <input type="text" class="form-control is-valid" id="category" name="category"
+        (keyup.enter)="addCategory($event)">
+
+
+      <ul>
+        <li *ngFor="let item of listCategory">{{item}}</li>
+      </ul>
+    </div>
+
+    <div class="col-md-4 col-lg-6">
+      <label for="level" class="form-label">Nivel</label>
+      <input type="text" class="form-control is-valid" id="level" [(ngModel)]="addWords.level" name="category">
+      <div class="valid-feedback">
+        Looks good!
+      </div>
+    </div>
+
+    <div class="mb-3 col-md-6">
+      <label for="validationServer05" class="form-label">Seleccione una imagen</label>
+
+      <input type="file" class="form-control" aria-label="Seleccione una imagen" required>
+      <div class="invalid-feedback">Example invalid form file feedback</div>
+    </div>
+    <div class="mb-3 col-md-6">
+      <label for="validationServer05" class="form-label">Seleccione una audio</label>
+
+      <input type="file" class="form-control" aria-label="Seleccione una imagen" required>
+      <div class="invalid-feedback">Example invalid form file feedback</div>
+    </div>
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit" (onclick)="handlerAddWords" >Agregar</button>
+    </div>
+  </form>
+</div>
