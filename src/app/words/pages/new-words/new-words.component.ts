@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import Swal from 'sweetalert2'
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, NgForm } from '@angular/forms';
 import { WordsService } from '../../services/words.service';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-words',
@@ -10,6 +11,7 @@ import { WordsService } from '../../services/words.service';
   styleUrls: ['./new-words.component.css']
 })
 export class NewWordsComponent implements OnInit {
+  @ViewChild('formWord') formWord: NgForm
   addWords: any = {
     word: "",
     wordSpanish: "",
@@ -18,124 +20,69 @@ export class NewWordsComponent implements OnInit {
     category: []
   }
   messageError;
-  listCategory: string[] = [];
+  listCategory: any = [];
+  listCategorySelected: string[] = [];
+
   category;
-
-
-  isValidInput = {
-    word: {
-      isValid: true,
-      messagesError: []
-    },
-    wordSpanish: {
-      isValid: true,
-      messagesError: []
-    },
-    lenguajes: {
-      isValid: true,
-      messagesError: []
-    },
-    level: {
-      isValid: true,
-      messagesError: []
-    },
-
-  }
 
   listCategorySugerido;
 
-  constructor(private _sWords: WordsService) { }
+  constructor(
+    private _sWords: WordsService,
+    private _router: Router) { }
 
   ngOnInit() {
-
   }
 
   async handlerAddWords() {
 
-    console.log('gggg')
-    this.addWords.category = this.listCategory;
-    console.log(this.isValidForm())
-    if (this.isValidForm()) {
+    if (this.formWord.form.status !== 'INVALID') {
+      this.addWords.category = this.listCategorySelected;
       (await this._sWords.createWords(this.addWords)).subscribe((resp) => {
-        console.log(this.addWords)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'La palabra fue creada con Éxito',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this._router.navigateByUrl('words/list-words');
       }, (err: HttpErrorResponse) => {
 
         console.log(err);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: 'No se pudo crear la ´palabra' + err,
+          showConfirmButton: false,
+          timer: 1500
+        })
       });
     }
 
 
-    console.log(this.isValidInput)
+
+
+  }
+
+  async CategoriasSugeridas(termino) {
+
+    (await this._sWords.getCategoryById(termino)).subscribe((resp) => {
+      this.listCategorySugerido = resp
+      console.log(this.listCategorySugerido)
+    }, (err: HttpErrorResponse) => {
+
+      console.log(err);
+      this.listCategorySugerido = []
+
+    });
+
 
   }
 
 
-  addCategory(event) {
-    this.listCategory.push(event.target.value);
-
-    event.target.value = ''
-    console.log('List catgeory', this.listCategory)
+  insertCategory(category) {
+    this.listCategorySelected.push(category);
+    this.listCategorySugerido= []
   }
-
-  isValidForm() {
-
-    this.resetIsValidInput();
-
-    let isValid = true;
-    isValid =  this. isValidWord()
-    // if (!this.addWords.word) {
-    //   this.isValidInput.word.isValid = false;
-    //   this.isValidInput.word.messagesError.push('Ingrese una palabra por favor.');
-    //   isValid = false;
-    // }else if(!this.addWords.wordSpanish){
-    //   this.isValidInput.wordSpanish.isValid = false;
-    //   this.isValidInput.wordSpanish.messagesError.push('Ingrese la tarducción por favor.');
-    //   isValid = false;
-    // }else if(!this.addWords.lenguajes){
-    //   this.isValidInput.lenguajes.isValid = false;
-    //   this.isValidInput.lenguajes.messagesError.push('Seleccione un lenguaje por favor.');
-    //   isValid = false;
-    // }else if(!this.addWords.level){
-    //   this.isValidInput.level.isValid = false;
-    //   this.isValidInput.level.messagesError.push('Ingrese  un nivel por favor.');
-    //   isValid = false;
-    // }
-
-
-    return isValid
-
-  }
-
-  resetIsValidInput() {
-    this.isValidInput = {
-      word: {
-        isValid: true,
-        messagesError: []
-      },
-      wordSpanish: {
-        isValid: true,
-        messagesError: []
-      },
-      lenguajes: {
-        isValid: true,
-        messagesError: []
-      },
-      level: {
-        isValid: true,
-        messagesError: []
-      },
-
-    }
-
-  }
-
-  isValidWord() {
-    if (!this.addWords.word) {
-      this.isValidInput.word.isValid = false;
-      this.isValidInput.word.messagesError.push('Ingrese una palabra.');
-      return false;
-    }
-    return true;
-  }
-
 }

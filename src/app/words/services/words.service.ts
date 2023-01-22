@@ -21,4 +21,26 @@ export class WordsService {
       headers,
     });
   }
+
+
+
+  async getCategoryById(entity: any) {
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.set("Content-type", "application/json");
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+    headers.append('Access-Control-Allow-Credentials', 'true');
+    return this.http.get(this.apiUrl + "/category", {params:{entity}, headers } );
+  }
+
+
+
+
+  async getWords() {
+  
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.set("Content-type", "application/json");
+    headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+    headers.append('Access-Control-Allow-Credentials', 'true');
+    return this.http.get(this.apiUrl + "/words", { headers } );
+  }
 }

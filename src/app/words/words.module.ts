@@ -4,7 +4,7 @@ import { WordsPagesComponent } from './pages/words-pages/words-pages.component';
 import { ListWordsComponent } from './pages/list-words/list-words.component';
 import { NewWordsComponent } from './pages/new-words/new-words.component';
 import { WordsRoutingModule } from './words-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { WordsService } from './services/words.service';
 
@@ -14,6 +14,7 @@ import { WordsService } from './services/words.service';
     CommonModule,
     WordsRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
 
   ],
