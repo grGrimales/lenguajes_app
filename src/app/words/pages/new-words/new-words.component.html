@@ -1,8 +1,8 @@
 <div class="container mt-5">
 
   <h3>Añadir nueva palabra</h3>
-  
-  <form class="row g-3" (ngSubmit)="createWordWithImg(formWord)" #formWord='ngForm'>
+
+  <form class="row g-3" (ngSubmit)="createWord(formWord)" #formWord='ngForm'>
     <div class="col-md-4 col-lg-6">
       <label for="word" class="form-label">Palabra</label>
       <input type="text" class=" form-control" 
@@ -61,18 +61,20 @@
       </span>
     </div>
 
-    <div class="mb-3 col-md-6">
-      <label for="image" class="form-label">Seleccione una imagen</label>
-      <input type="file" class="form-control" id="image" name="image" (change)="onImageSelected($event)">
-    </div>
-    
-    <div class="mb-3 col-md-6">
-      <label for="audio" class="form-label">Seleccione un audio</label>
-      <input type="file" class="form-control" id="audio" name="audio" (change)="onAudioSelected($event)">
-    </div>
+<div class="mb-3 col-md-6">
+  <label for="image" class="form-label">Seleccione una imagen</label>
+  <input type="file" class="form-control" id="image" name="image" (change)="onImageSelected($event)">
+  <div *ngIf="imgErrorMsg" class="text-danger">{{ imgErrorMsg }}</div>
+</div>
+
+<div class="mb-3 col-md-6">
+  <label for="audio" class="form-label">Seleccione un audio</label>
+  <input type="file" class="form-control" id="audio" name="audio" (change)="onAudioSelected($event)">
+  <div *ngIf="audioErrorMsg" class="text-danger">{{ audioErrorMsg }}</div>
+</div>
     
     <div class="col-12">
-      <button class="btn btn-primary" >Agregar</button>
+      <button class="btn btn-primary" [disabled]="!isValidForm" >Agregar</button>
     </div>
   </form>
 </div>
