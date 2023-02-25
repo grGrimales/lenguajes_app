@@ -22,7 +22,9 @@ export class ListWordsComponent implements OnInit {
   async getListWords() {
     (await this._sWords.getWords()).subscribe((resp) => {
       console.log(resp)
-      this.listWords = resp
+      this.listWords = resp;
+
+      console.log(this.listWords)
     }, (err: HttpErrorResponse) => {
 
       console.log(err);

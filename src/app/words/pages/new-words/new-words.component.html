@@ -1,11 +1,12 @@
 <div class="container mt-5">
 
   <h3>Añadir nueva palabra</h3>
-  <form class="row g-3" (ngSubmit)="handlerAddWords(formWord)" #formWord='ngForm'>
+  
+  <form class="row g-3" (ngSubmit)="createWordWithImg(formWord)" #formWord='ngForm'>
     <div class="col-md-4 col-lg-6">
       <label for="word" class="form-label">Palabra</label>
       <input type="text" class=" form-control" 
-       id="word" [(ngModel)]="addWords.word" name="word"  required minlength="3">
+       id="word" [(ngModel)]="newWord.word" name="word"  required minlength="3">
     <span class="form-text text-danger" *ngIf="formWord.controls.word?.invalid &&  formWord.controls.word?.touched">
       Debe Ingresar una palabra
     </span>
@@ -13,7 +14,7 @@
     <div class="col-md-4 col-lg-6">
       <label for="wordSpanish" class="form-label">Traducción</label>
       <input type="text" class="form-control " 
-      id="wordSpanish" [(ngModel)]="addWords.wordSpanish"
+      id="wordSpanish" [(ngModel)]="newWord.wordSpanish"
         name="wordSpanish" required minlength="3">
         <span class="form-text text-danger"  
          *ngIf="formWord.controls.wordSpanish?.invalid &&  formWord.controls.wordSpanish?.touched"
@@ -26,9 +27,9 @@
       <label for="lenguajes" class="form-label">Lenguaje</label>
       <select class="form-select " id="validationServer04" id="lenguajes" name="lenguajes"
         aria-describedby="validationServer04Feedback"
-         [(ngModel)]="addWords.lenguajes " required >
+         [(ngModel)]="newWord.lenguajes " required >
         <option selected disabled value="">--Seleccione una categoría--</option>
-        <option value="ingles">Ingles</option>
+        <option value="ingles" selected="true">Ingles</option>
         <option value="portugues">Portugues</option>
       </select>
       <span class="form-text text-danger" *ngIf="formWord.controls.lenguajes?.invalid &&  formWord.controls.lenguajes?.touched">
@@ -54,22 +55,22 @@
 
     <div class="col-md-4 col-lg-6">
       <label for="level" class="form-label">Nivel</label>
-      <input type="text" class="form-control " id="level" [(ngModel)]="addWords.level" name="level" minlength="3" required>
+      <input type="text" class="form-control " id="level" [(ngModel)]="newWord.level" name="level" minlength="3" required>
       <span class="form-text text-danger" *ngIf="formWord.controls.level?.invalid &&  formWord.controls.level?.touched">
         Debe Ingresar un Nivel
       </span>
     </div>
 
     <div class="mb-3 col-md-6">
-      <label for="validationServer05" class="form-label">Seleccione una imagen</label>
-
-      <input type="file" class="form-control" aria-label="Seleccione una imagen" required>
+      <label for="image" class="form-label">Seleccione una imagen</label>
+      <input type="file" class="form-control" id="image" name="image" (change)="onImageSelected($event)">
     </div>
+    
     <div class="mb-3 col-md-6">
-      <label for="validationServer05" class="form-label">Seleccione una audio</label>
-
-      <input type="file" class="form-control" aria-label="Seleccione una imagen" required>
+      <label for="audio" class="form-label">Seleccione un audio</label>
+      <input type="file" class="form-control" id="audio" name="audio" (change)="onAudioSelected($event)">
     </div>
+    
     <div class="col-12">
       <button class="btn btn-primary" >Agregar</button>
     </div>
