@@ -1,13 +1,16 @@
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
 import { map, switchMap, catchError } from 'rxjs/operators';
 import { WordsService } from '../../services/words.service';
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { Observable } from 'rxjs';
 import { from } from 'rxjs/observable/from';
 import { of } from 'rxjs/observable/of';
+import { AlertComponentComponent } from '../../../shared/alert-component/alert-component.component';
+
+import { AlertService } from '../../../shared/alert-component/services/alert.service';
 
 @Component({
   selector: 'app-new-words',
@@ -17,11 +20,11 @@ import { of } from 'rxjs/observable/of';
 export class NewWordsComponent implements OnInit {
   @ViewChild('formWord') formWord: NgForm
   newWord: Word = {
-    word: "test",
-    wordSpanish: "test",
-    lenguajes: "test",
-    level: 'test',
-    category: ["test"]
+    word: "",
+    wordSpanish: "",
+    lenguajes: "",
+    level: '',
+    category: [""]
   }
 
   messageError;
@@ -40,11 +43,48 @@ export class NewWordsComponent implements OnInit {
 
   listCategorySugerido;
 
+  @Input() message: string;
+  @Input() type: 'success' | 'error';
+  isVisible$: Observable<boolean>;
+
   constructor(
     private _sWords: WordsService,
-    private _router: Router) { }
+    private _router: Router,
+    private alertService: AlertService,
+    private _route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+
+    this._route.paramMap.subscribe(params => {
+
+      console.log(params.get('id'))
+      params.get('id');
+
+
+      this._sWords.getWordbById(params.get('id')).subscribe(
+        (resp) => {
+          console.log(resp);
+
+          this.newWord = resp;
+
+        },
+        (error) => {
+          console.log(error)
+        }
+      )
+
+    })
+
+    this.isVisible$ = this.alertService.isVisible$;
+  }
+
+  closeAlert() {
+    this.alertService.hide();
+  }
+
+  openAlert() {
+    this.alertService.show();
   }
 
 
@@ -139,6 +179,13 @@ export class NewWordsComponent implements OnInit {
         if (!hasError) {
           const resp = await this._sWords.createWord(this.newWord).toPromise();
           console.log('La palabra se ha creado correctamente');
+
+          this.openAlert();
+
+          setTimeout(() => {
+            this._router.navigate(["words/list-words"])
+          }, 2000);
+
           console.log(resp);
           this.isValidForm = true;
           return resp;
@@ -164,6 +211,7 @@ export class NewWordsComponent implements OnInit {
     } else {
       this.imgErrorMsg = '';
       this.newWord.img = file;
+      this.isValidForm = true;
     }
   }
 
@@ -177,6 +225,8 @@ export class NewWordsComponent implements OnInit {
     } else {
       this.audioErrorMsg = '';
       this.newWord.audio = file;
+      this.isValidForm = true;
+
     }
   }
 
