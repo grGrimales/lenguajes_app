@@ -78,3 +78,10 @@
     </div>
   </form>
 </div>
+
+<div *ngIf="isVisible$ | async" class="alert alert-{{type}}" role="alert">
+
+
+  <app-alert message="¡Usuario creado con exito!!" type="success"></app-alert>
+
+</div>

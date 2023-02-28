@@ -1,0 +1,8 @@
+<div *ngIf="!closed" class="alert" [ngClass]="{ 'alert-success': type === 'success', 'alert-danger': type === 'error', 'alert-warning': type === 'warning', 'alert-yesno': type === 'yesno' }">
+  <span class="close" (click)="onClose()">×</span>
+  <p>{{ message }}</p>
+  <div *ngIf="type === 'yesno'" class="yes-no-buttons">
+    <button (click)="onYes()">Sí</button>
+    <button (click)="onNo()">No</button>
+  </div>
+</div>

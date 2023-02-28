@@ -7,6 +7,10 @@ import { WordsRoutingModule } from './words-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { WordsService } from './services/words.service';
+import { AlertService } from '../shared/alert-component/services/alert.service';
+import { AlertComponentComponent } from '../shared/alert-component/alert-component.component';
+import { AlertQuestionService } from '../shared/alert-question/services/alert-question.service';
+import { AlertQuestionComponent } from '../shared/alert-question/alert-question.component';
 
 
 @NgModule({
@@ -20,8 +24,10 @@ import { WordsService } from './services/words.service';
   ],
   declarations: [
     WordsPagesComponent,
+    AlertComponentComponent,
+    AlertQuestionComponent,
     ListWordsComponent,
     NewWordsComponent],
-  providers: [WordsService]
+  providers: [WordsService, AlertService, AlertQuestionService]
 })
 export class WordsModule { }

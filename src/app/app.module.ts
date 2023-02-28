@@ -8,15 +8,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { ErrorPageComponent } from './shared/error-page/error-page.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     ErrorPageComponent,
+
   ],
   imports: [
-    BrowserModule, 
-    AppRoutingModule, 
+    BrowserModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
