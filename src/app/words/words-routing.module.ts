@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListWordsComponent } from './pages/list-words/list-words.component';
 import { NewWordsComponent } from './pages/new-words/new-words.component';
-import { ListenWordsComponent } from './pages/listen-words/listen-words.component';
-import { GenerateListenWordsComponent } from './pages/generate-listen-words/generate-listen-words.component';
+import { ListenWordsComponent } from '../private/admin/words/pages/listen-words/listen-words.component';
+import { GenerateListenWordsComponent } from '../private/admin/words/pages/generate-listen-words/generate-listen-words.component';
 
 
 

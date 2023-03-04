@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row mt-5 d-flex">
+
+    <div class="col-10">
+      <h1>Listado de Palabras</h1>
+
+    </div>
+
+    <div class="col-2 align-self-end" >
+      <button (click)="goToNewWord()" type="button" class="btn  btn-light">
+        <img src="../../../../assets/images/icon_add.png" alt="agregar" width="25" height="25"
+        
+        > 
+        Agregar
+      </button>
+    </div>
+  </div>
+
+  <div class="card mt-5" style="width: 100%;">
+    <div class="card-body">
+      <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+          <thead>
+            <tr>
+              <th scope="col">Palabra</th>
+              <th scope="col">Traducción</th>
+              <th scope="col">Lenguaje</th>
+              <th scope="col">Acciones</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let word of listWords">
+              <td>{{word.word}}</td>
+              <td>{{word.word}}</td>
+              <td>{{word.wordSpanish}}</td>
+              <td><img src="../../../../assets/images/icon_pencil.png" (click)="goToEditWord(word._id)"  width="25" height="25" alt="editar">
+                <img src="../../../../assets/images/icon_trash.png" (click)="showModal(word)" width="25" height="25" alt="editar">
+              </td>
+
+            </tr>
+  
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+ 
+</div>
+
+
+<div class="modal" *ngIf="isVisibleModal">
+  <button class="close-button" (click)="closeModal()">&#10005;</button>
+  <div class="modal-content">
+    <p>¿Estás seguro?</p>
+    <button (click)="deleteWord()">Sí</button>
+    <button (click)="closeModal()">No</button>
+  </div>
+</div>
