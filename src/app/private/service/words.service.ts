@@ -39,6 +39,33 @@ export class WordsService {
   }
 
 
+  deleteWord(id: string): Observable<any> {
+
+
+    const headers: HttpHeaders = new HttpHeaders({
+      'Access-Control-Allow-Origin': 'http://localhost:3000',
+      'Access-Control-Allow-Credentials': 'true',
+      "Content-type": "application/json"
+    });
+
+    return this.http.delete<any>(`${this.apiUrl}/words/` + id, { headers });
+
+
+  }
+
+  getWordbById(id: string): Observable<any> {
+
+
+    const headers: HttpHeaders = new HttpHeaders({
+      'Access-Control-Allow-Origin': 'http://localhost:3000',
+      'Access-Control-Allow-Credentials': 'true',
+      "Content-type": "application/json"
+    });
+
+    return this.http.get<any>(`${this.apiUrl}/words/` + id, { headers });
+
+
+  }
 
   async getCategoryById(entity: any) {
     let headers: HttpHeaders = new HttpHeaders();

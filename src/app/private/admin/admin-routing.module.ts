@@ -10,8 +10,8 @@ const routes: Routes =[
   {
     path: '',
     children: [
-      { path: 'list-words', component: ListWordsComponent},
-      { path: 'new-words', component: NewWordsComponent},
+      { path: 'words/list-words', component: ListWordsComponent},
+      { path: 'words/new-words', component: NewWordsComponent},
       { path: '**', redirectTo: 'list-words'},
 
 
