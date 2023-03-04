@@ -38,6 +38,18 @@ export class WordsService {
     return this.http.post<any>(`${this.apiUrl}/words`, entity, { headers });
   }
 
+  editWord(entity: any, id: string): Observable<any> {
+    const headers: HttpHeaders = new HttpHeaders({
+      'Access-Control-Allow-Origin': 'http://localhost:3000',
+      'Access-Control-Allow-Credentials': 'true'
+    });
+
+    delete entity.__v;
+    delete entity._id;
+
+    return this.http.patch<any>(`${this.apiUrl}/words/` + id, entity, { headers });
+  }
+
 
   deleteWord(id: string): Observable<any> {
 
@@ -47,6 +59,8 @@ export class WordsService {
       'Access-Control-Allow-Credentials': 'true',
       "Content-type": "application/json"
     });
+
+
 
     return this.http.delete<any>(`${this.apiUrl}/words/` + id, { headers });
 
