@@ -10,10 +10,12 @@ export class AlertQuestionComponent implements OnInit {
 
   @Input() confirmCallback: Function;
   @Input() cancelCallback: Function;
+  @Input() message: string;
 
   constructor(public modalService: AlertQuestionService) { }
 
   ngOnInit() { }
+
 
   public confirm(): void {
     if (this.confirmCallback) {

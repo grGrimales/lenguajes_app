@@ -1,8 +1,28 @@
-<div class="modal" *ngIf="modalService.visible">
+<!-- <div class="modal" *ngIf="modalService.visible">
   <button class="close-button" (click)="modalService.hideModal()">&#10005;</button>
   <div class="modal-content">
     <p>¿Estás seguro?</p>
     <button (click)="confirm()">Sí</button>
     <button (click)="cancel()">No</button>
+  </div>
+</div> -->
+
+
+<!-- <div class="modal" *ngIf="modalService.visible">
+  <button class="close-button" (click)="modalService.hideModal()">&#10005;</button>
+  <div class="modal-content">
+    <p>¿Estás seguro?</p>
+    <button (click)="confirmCallback()">Sí</button>
+    <button (click)="cancelCallback()">No</button>
+  </div>
+</div> -->
+
+
+<div class="modal" *ngIf="modalService.visible">
+  <button class="close-button" (click)="modalService.hideModal()">&#10005;</button>
+  <div class="modal-content">
+    <p>{{ message }}</p>
+    <button (click)="confirmCallback()">Sí</button>
+    <button (click)="cancelCallback()">No</button>
   </div>
 </div>

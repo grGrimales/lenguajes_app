@@ -11,6 +11,8 @@ import { AlertService } from '../shared/alert-component/services/alert.service';
 import { AlertComponentComponent } from '../shared/alert-component/alert-component.component';
 import { AlertQuestionService } from '../shared/alert-question/services/alert-question.service';
 import { AlertQuestionComponent } from '../shared/alert-question/alert-question.component';
+import { ListenWordsComponent } from './pages/listen-words/listen-words.component';
+import { GenerateListenWordsComponent } from './pages/generate-listen-words/generate-listen-words.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { AlertQuestionComponent } from '../shared/alert-question/alert-question.
     AlertComponentComponent,
     AlertQuestionComponent,
     ListWordsComponent,
-    NewWordsComponent],
+    NewWordsComponent,
+    ListenWordsComponent,
+    GenerateListenWordsComponent],
   providers: [WordsService, AlertService, AlertQuestionService]
 })
 export class WordsModule { }
