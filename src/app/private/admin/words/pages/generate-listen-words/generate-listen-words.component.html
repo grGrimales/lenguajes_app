@@ -1,45 +1,14 @@
-<form class="form" (ngSubmit)="onSubmit()">
+<form class="form" (ngSubmit)="saveGenerateListenInformation()">
   <div class="form-group">
     <label for="repetitions">Repeticiones por palabras:</label>
     <input type="number" class="form-control" id="repetitions" name="repetitions" [(ngModel)]="repetitions" required>
   </div>
-  <div class="form-group">
+  <!-- <div class="form-group">
     <label for="category">Categoría:</label>
     <select class="form-control" id="category" name="category" [(ngModel)]="category" required multiple>
       <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
     </select>
-  </div>
-
-
-
-
-
-
-  <div class="input-customer_select input-customer">
-    <p>Segmentación</p>
-    <div class="search-bar_select card search-bar"  (keydown)="onTabPressed($event)" (click)="toggleDropdown($event)">
-      <input type="text" [(ngModel)]="selectedItem" (keyup)="filterItems($event)" >
-      <div class="dropdown" [class.show]="showDropdown">
-        <ul>
-          <li *ngIf="selectedItem.trim() === '' && !showDropdown" (click)="showDropdown = true">
-            Mostrar todo
-          </li>
-          <li *ngFor="let item of listSegmento" (click)="selectItem(item.id); $event.stopPropagation()">
-            <span>{{ item.name }}</span>
-            <span *ngIf="isSelected(item.id)">✔</span>
-          </li>
-          <li *ngIf="filteredItems.length == 0">
-            No hay elementos que coincidan con la búsqueda.
-          </li>
-        </ul>
-      </div>
-      <span>Cantidad: {{ selectedItems.length }} clientes</span>
-    </div>
-  </div>
-
-
-
-
+  </div> -->
 
 
 
@@ -54,5 +23,28 @@
     <input type="checkbox" class="form-check-input" id="listen" name="listen" [(ngModel)]="listen">
     <label class="form-check-label" for="listen">Escuchar español</label>
   </div>
+
+  <div class="input-customer_select input-customer">
+    <p>Categorias</p>
+    <div class="search-bar_select card search-bar"  (keydown)="onTabPressed($event)" (click)="toggleDropdown($event)">
+      <input type="text" name="selectedItem"  [(ngModel)]="selectedItem" (keyup)="filterItems($event)" (click)="filterItems($event)" >
+      <div class="dropdown" [class.show]="showDropdown">
+        <ul>
+          <li *ngIf="selectedItem?.trim() === '' && !showDropdown" (click)="showDropdown = true">
+            Mostrar todo
+          </li>
+          <li *ngFor="let item of categorriesSelected" (click)="selectItem(item); $event.stopPropagation()">
+            <span>{{ item }}</span>
+            <span *ngIf="isSelected(item)">✔</span>
+          </li>
+          <li *ngIf="category.length == 0">
+            No hay elementos que coincidan con la búsqueda.
+          </li>
+        </ul>
+      </div>
+      <!-- <span>Cantidad: {{ selectedItems.length }} clientes</span> -->
+    </div>
+  </div>
+
   <button type="submit" class="btn btn-primary">Generar</button>
 </form>

@@ -8,24 +8,24 @@ import { Component, HostListener, OnInit } from '@angular/core';
 export class GenerateListenWordsComponent implements OnInit {
 
   repetitions: number;
-  category: string[];
+  categorriesSelected: string[];
   categories: string[] = ['Categoría 1', 'Categoría 2', 'Categoría 3'];
   listen: boolean;
 
 
-  listSegmento: any[] | any = ["option1", "option2"]
+  listSegmento: any[] | any = ["A1", "A2", "B1", "B2"]
   selectedItems: any = [];
   showDropdown: boolean = false;
-  filteredItems: string[] = [];
+  // filteredItems: string[] = [];
   constructor() { }
 
   ngOnInit() {
   }
 
-  onSubmit() {
+  saveGenerateListenInformation() {
     const listenInformation = {
       repetitions: this.repetitions,
-      category: this.category,
+      categories: this.categorriesSelected,
       listen: this.listen
     };
     localStorage.setItem('generateListenInformation', JSON.stringify(listenInformation));
@@ -42,7 +42,8 @@ export class GenerateListenWordsComponent implements OnInit {
 
   filterItems(event: any) {
     const searchTerm = event.target.value.toLowerCase();
-    this.filteredItems = this.listSegmento.filter(item => item.toLowerCase().includes(searchTerm));
+    this.categorriesSelected = this.listSegmento.filter(item => item.toLowerCase().includes(searchTerm));
+    if (this.categorriesSelected.length == 0 || !this.categorriesSelected) this.categorriesSelected = this.listSegmento;
     this.showDropdown = true;
   }
 
