@@ -17,7 +17,7 @@ export class ListenWordsComponent implements OnInit {
 
     const generateListenInformation = localStorage.getItem("generateListenInformation");
 
-    if (!generateListenInformation) this._router.navigate(['words/generate-listen-to-words'])
+    if (!generateListenInformation) this._router.navigate(['admin/words/generate-listen-to-words'])
 
   }
 
