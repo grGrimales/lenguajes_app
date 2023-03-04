@@ -37,7 +37,7 @@
             <span>{{ item }}</span>
             <span *ngIf="isSelected(item)">✔</span>
           </li>
-          <li *ngIf="category.length == 0">
+          <li *ngIf="category?.length == 0">
             No hay elementos que coincidan con la búsqueda.
           </li>
         </ul>
