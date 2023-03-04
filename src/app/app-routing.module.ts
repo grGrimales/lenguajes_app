@@ -23,17 +23,13 @@ const routes: Routes = [
   },
   
   {
-    path: 'words',
-    loadChildren: () => import('./words/words.module').then(m => m.WordsModule)
-  },
-  {
     path: 'frases',
     loadChildren: () => import('./frases/frases.module').then(m => m.FrasesModule)
   },
-  {
-    path: '**',
-    redirectTo: '404'
-  },
+  // {
+  //   path: '**',
+  //   redirectTo: '404'
+  // },
 ]
 
 @NgModule({
