@@ -10,6 +10,8 @@ import { AlertService } from '../../shared/alert-component/services/alert.servic
 import { AlertQuestionService } from '../../shared/alert-question/services/alert-question.service';
 import { AlertComponentComponent } from '../../shared/alert-component/alert-component.component';
 import { AlertQuestionComponent } from '../../shared/alert-question/alert-question.component';
+import { ListenWordsComponent } from './words/pages/listen-words/listen-words.component';
+import { GenerateListenWordsComponent } from './words/pages/generate-listen-words/generate-listen-words.component';
 
 @NgModule({
   imports: [
@@ -19,12 +21,14 @@ import { AlertQuestionComponent } from '../../shared/alert-question/alert-questi
     ReactiveFormsModule,
     HttpClientModule
   ],
-  
+
   declarations: [
     AlertComponentComponent,
     AlertQuestionComponent,
-    NewWordsComponent, 
-    ListWordsComponent],
-    providers: [WordsService, AlertService, AlertQuestionService]
+    NewWordsComponent,
+    ListWordsComponent,
+    ListenWordsComponent,
+    GenerateListenWordsComponent],
+  providers: [WordsService, AlertService, AlertQuestionService]
 })
 export class AdminModule { }
