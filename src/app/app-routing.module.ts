@@ -8,7 +8,7 @@ const routes: Routes = [
 
   //Rutas Públicas
   {
-    path: 'auth',
+    path: '',
     loadChildren: () => import('./public/auth/auth.module').then(m => m.AuthModule)
   },
   {

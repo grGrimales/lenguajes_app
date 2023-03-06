@@ -4,7 +4,7 @@ import { AlertQuestionService } from './services/alert-question.service';
 @Component({
   selector: 'app-alert-question',
   templateUrl: './alert-question.component.html',
-  styleUrls: ['./alert-question.component.css']
+  styleUrls: ['./alert-question.component.scss']
 })
 export class AlertQuestionComponent implements OnInit {
 

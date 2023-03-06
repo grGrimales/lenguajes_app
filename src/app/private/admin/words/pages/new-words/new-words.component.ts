@@ -15,7 +15,7 @@ import { WordsService } from '../../../../service/words.service';
 @Component({
   selector: 'app-new-words',
   templateUrl: './new-words.component.html',
-  styleUrls: ['./new-words.component.css']
+  styleUrls: ['./new-words.component.scss']
 })
 export class NewWordsComponent implements OnInit {
   @ViewChild('formWord') formWord: NgForm

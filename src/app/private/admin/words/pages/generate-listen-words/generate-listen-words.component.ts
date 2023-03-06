@@ -3,7 +3,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 @Component({
   selector: 'app-generate-listen-words',
   templateUrl: './generate-listen-words.component.html',
-  styleUrls: ['./generate-listen-words.component.css']
+  styleUrls: ['./generate-listen-words.component.scss']
 })
 export class GenerateListenWordsComponent implements OnInit {
 

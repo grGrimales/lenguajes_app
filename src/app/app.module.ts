@@ -15,6 +15,7 @@ import { ErrorPageComponent } from './shared/error-page/error-page.component';
     NavBarComponent,
     ErrorPageComponent,
 
+
   ],
   imports: [
     BrowserModule,

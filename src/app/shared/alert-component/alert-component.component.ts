@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-alert',
   templateUrl: './alert-component.component.html',
-  styleUrls: ['./alert-component.component.css']
+  styleUrls: ['./alert-component.component.scss']
 })
 export class AlertComponentComponent {
   @Input() message: string;
